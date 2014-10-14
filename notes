@@ -1,0 +1,7 @@
+You can access command-line arguments via the global process object. The process object has an argv property which is an array containing the complete command-line. i.e. process.argv.
+
+ask for item
+
+preferences settings in sublime
+
+if you put "is" at the begining of the method means it will return a boolean
