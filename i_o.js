@@ -1,4 +1,7 @@
 var fs = require('fs')
 
-fs.readFileSync('/path/to/file')
+contentFile = fs.readFileSync(process.argv[2]).toString()
 
+var numberLines = contentFile.split('\n').length - 1
+
+console.log(numberLines)

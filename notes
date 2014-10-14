@@ -1,3 +1,7 @@
+doubts:
+
+variables from the global scope.
+
 You can access command-line arguments via the global process object. The process object has an argv property which is an array containing the complete command-line. i.e. process.argv.
 
 ask for item
@@ -5,3 +9,80 @@ ask for item
 preferences settings in sublime
 
 if you put "is" at the begining of the method means it will return a boolean
+
+Async:
+
+Send request
+go on with other code
+response come in any time on a callback
+
+Sync:
+
+Send request
+Wait for response
+go on with other code after response
+
+The reason for having both sync and async verisons of those operations is that they can be time-consuming, and since node.js has a single-threaded main event loop, you do not under any circumstances want to block the event loop with slow synchronous function calls.
+
+That is why everything is done using callbacks (or promises, vows, or what your particular taste in async stuff happens to be) instead. This way, you can have an event loop that just calls an async function and handle the result of the async function in a callback, when it happens to be done.
+
+This is one of the major strengths of node.js, and one of the basic rules: "do not block the main event loop".
+
+Here's the official solution in case you want to compare notes:
+----------
+  var fs = require('fs')
+    
+    var contents = fs.readFileSync(process.argv[2])
+    var lines = contents.toString().split('\n').length - 1
+    console.log(lines)
+    
+    // note you can avoid the .toString() by passing 'utf8' as the
+    // second argument to readFileSync, then you'll get a String!
+    //
+    // fs.readFileSync(process.argv[2], 'utf8').split('\n').length - 1
+
+
+   Remember that idiomatic Node.js callbacks normally have the signature:
+
+   function callback (err, data) { /* ... */ }
+
+ Functions: They can be “stored in variables, passed as arguments to functions, created within functions, and returned from functions” 
+ functional programming technique in JavaScript
+ functional programming is the use of functions as arguments. 
+
+When we pass a callback function as an argument to another function, we are only passing the function definition
+
+And since the containing function has the callback function in its parameter as a function definition, it can execute the callback anytime. This allows us to execute the callback functions at any point in the containing function. 
+
+It is important to note that the callback function is not executed immediately. It is “called back” (hence the name) at some specified point inside the containing function’s body.
+
+Even without a name, it can still be accessed later via the arguments object by the containing function.
+
+    // Make sure the callback is a function​
+    if (typeof callback === "function") {
+    // Call it, since we have confirmed it is callable​
+        callback(options);
+    }
+scope:
+http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/
+
+JavaScript does not have block-level scope (variables scoped to surrounding curly brackets); instead, JavaScript has function-level scope.
+If you don't declare your local variables with the var keyword, they are part of the global scope
+If you declare a global variable and a local variable with the same name, the local variable will have priority when you attempt to use the variable inside a function (local scope)
+
+Variable Hoisting
+All variable declarations are hoisted (lifted and declared) to the top of the function, if defined in a function, or the top of the global context, if outside a function.
+
+It is important to know that only variable declarations are hoisted to the top, not variable initialization or assignments (when the variable is assigned a value).
+
+callbacks:
+ http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/?WPACFallback=1&WPACRandom=1413284994441   
+closures:
+
+
+
+
+
+
+
+
